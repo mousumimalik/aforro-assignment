@@ -8,6 +8,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
+import DashboardCard from './DashboardCard';
 
 const data = [
   { month: 'Jan', loyal: 200, new: 140, unique: 240 },
@@ -26,9 +27,8 @@ const data = [
 
 export default function VisitorInsights() {
   return (
-    <div className="bg-white rounded-xl p-4 border border-gray-100 h-full flex flex-col min-h-[280px]">
-      <h3 className="text-sm font-semibold text-gray-800 mb-3">Visitor Insights</h3>
-      <div className="flex-1 min-h-[220px]">
+    <DashboardCard title="Visitor Insights">
+      <div className="flex-1 min-h-[200px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data} margin={{ top: 5, right: 8, left: -16, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
@@ -36,33 +36,12 @@ export default function VisitorInsights() {
             <YAxis tick={{ fontSize: 10 }} />
             <Tooltip />
             <Legend iconType="circle" iconSize={8} wrapperStyle={{ fontSize: 10, paddingTop: 8 }} />
-            <Line
-              type="monotone"
-              dataKey="loyal"
-              stroke="#6366f1"
-              strokeWidth={2}
-              dot={false}
-              name="Loyal Customers"
-            />
-            <Line
-              type="monotone"
-              dataKey="new"
-              stroke="#ef4444"
-              strokeWidth={2}
-              dot={false}
-              name="New Customers"
-            />
-            <Line
-              type="monotone"
-              dataKey="unique"
-              stroke="#22c55e"
-              strokeWidth={2}
-              dot={false}
-              name="Unique Customers"
-            />
+            <Line type="monotone" dataKey="loyal" stroke="#8B5CF6" strokeWidth={2} dot={false} name="Loyal Customers" />
+            <Line type="monotone" dataKey="new" stroke="#F87171" strokeWidth={2} dot={false} name="New Customers" />
+            <Line type="monotone" dataKey="unique" stroke="#4ADE80" strokeWidth={2} dot={false} name="Unique Customers" />
           </LineChart>
         </ResponsiveContainer>
       </div>
-    </div>
+    </DashboardCard>
   );
 }

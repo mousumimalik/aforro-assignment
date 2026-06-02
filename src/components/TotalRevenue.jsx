@@ -1,6 +1,14 @@
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
 } from 'recharts';
+import DashboardCard from './DashboardCard';
 
 const data = [
   { day: 'Monday', online: 6000, offline: 8000 },
@@ -14,19 +22,20 @@ const data = [
 
 export default function TotalRevenue() {
   return (
-    <div className="bg-white rounded-xl p-4 border border-gray-100">
-      <h3 className="text-sm font-semibold text-gray-800 mb-3">Total Revenue</h3>
-      <ResponsiveContainer width="100%" height={170}>
-        <BarChart data={data} margin={{ top: 5, right: 5, left: -20, bottom: 0 }} barSize={8} barGap={4}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" vertical={false} />
-          <XAxis dataKey="day" tick={{ fontSize: 9 }} />
-          <YAxis tick={{ fontSize: 9 }} />
-          <Tooltip />
-          <Legend iconType="circle" iconSize={8} wrapperStyle={{ fontSize: 10 }} />
-          <Bar dataKey="online" fill="#6366f1" name="Online Sales" radius={[4, 4, 0, 0]} />
-          <Bar dataKey="offline" fill="#22c55e" name="Offline Sales" radius={[4, 4, 0, 0]} />
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
+    <DashboardCard title="Total Revenue">
+      <div className="flex-1 min-h-[200px] w-full">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart data={data} margin={{ top: 5, right: 5, left: -20, bottom: 0 }} barSize={8} barGap={4}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" vertical={false} />
+            <XAxis dataKey="day" tick={{ fontSize: 9 }} />
+            <YAxis tick={{ fontSize: 9 }} />
+            <Tooltip />
+            <Legend iconType="circle" iconSize={8} wrapperStyle={{ fontSize: 10 }} />
+            <Bar dataKey="online" fill="#5A6ACF" name="Online Sales" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="offline" fill="#4AB58E" name="Offline Sales" radius={[4, 4, 0, 0]} />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    </DashboardCard>
   );
 }

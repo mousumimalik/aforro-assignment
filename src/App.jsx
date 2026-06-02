@@ -75,9 +75,9 @@ export default function App() {
         />
 
         <main className="flex-1 overflow-y-auto p-4 sm:p-5">
-          <div className="grid grid-cols-1 xl:grid-cols-12 gap-4 mb-4 items-stretch">
-            <div className="xl:col-span-8">
-              <div className="bg-white rounded-xl p-4 border border-gray-100 h-full">
+          <div className="grid grid-cols-1 xl:grid-cols-12 gap-4 mb-4 items-stretch min-h-[300px]">
+            <div className="xl:col-span-8 flex">
+              <div className="bg-white rounded-xl p-4 border border-gray-100 h-full w-full flex flex-col">
                 <div className="flex items-center justify-between mb-3">
                   <div>
                     <h2 className="text-sm font-bold text-gray-800">Today&apos;s Sales</h2>
@@ -95,32 +95,46 @@ export default function App() {
                 </div>
               </div>
             </div>
-            <div className="xl:col-span-4 min-h-[280px]">
-              <VisitorInsights />
+            <div className="xl:col-span-4 flex min-h-[300px]">
+              <div className="w-full h-full">
+                <VisitorInsights />
+              </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mb-4">
-            <div className="lg:col-span-5">
-              <TotalRevenue />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mb-4 items-stretch min-h-[320px]">
+            <div className="lg:col-span-5 flex">
+              <div className="w-full h-full">
+                <TotalRevenue />
+              </div>
             </div>
-            <div className="lg:col-span-4">
-              <CustomerSatisfaction />
+            <div className="lg:col-span-4 flex">
+              <div className="w-full h-full">
+                <CustomerSatisfaction />
+              </div>
             </div>
-            <div className="lg:col-span-3">
-              <TargetVsReality />
+            <div className="lg:col-span-3 flex">
+              <div className="w-full h-full">
+                <TargetVsReality />
+              </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mb-4">
-            <div className="lg:col-span-4">
-              <TopProducts />
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mb-4 items-stretch min-h-[320px]">
+            <div className="lg:col-span-4 flex">
+              <div className="w-full h-full">
+                <TopProducts />
+              </div>
             </div>
-            <div className="lg:col-span-4">
-              <SalesMapping />
+            <div className="lg:col-span-4 flex">
+              <div className="w-full h-full">
+                <SalesMapping />
+              </div>
             </div>
-            <div className="lg:col-span-4">
-              <VolumeServiceLevel />
+            <div className="lg:col-span-4 flex">
+              <div className="w-full h-full">
+                <VolumeServiceLevel />
+              </div>
             </div>
           </div>
 

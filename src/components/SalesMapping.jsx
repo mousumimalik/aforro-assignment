@@ -1,29 +1,68 @@
+import { memo } from 'react';
+import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
+import DashboardCard from './DashboardCard';
+
+const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
+
+const DEFAULT_FILL = '#E8ECF4';
+
+/** Highlighted markets — colors aligned with the design reference */
+const COUNTRY_FILL = {
+  'United States of America': '#F59E0B',
+  Brazil: '#F87171',
+  'Dem. Rep. Congo': '#93C5FD',
+  'Democratic Republic of the Congo': '#93C5FD',
+  'Saudi Arabia': '#0D9488',
+  China: '#8B5CF6',
+  Indonesia: '#4ADE80',
+};
+
+function getFill(name) {
+  return COUNTRY_FILL[name] ?? DEFAULT_FILL;
+}
+
+function SalesMap() {
+  return (
+    <ComposableMap
+      projection="geoEqualEarth"
+      projectionConfig={{ scale: 145, center: [10, 0] }}
+      className="w-full h-full"
+    >
+      <Geographies geography={GEO_URL}>
+        {({ geographies }) =>
+          geographies.map((geo) => {
+            const name = geo.properties?.name ?? '';
+            return (
+              <Geography
+                key={geo.rsmKey}
+                geography={geo}
+                fill={getFill(name)}
+                stroke="#FFFFFF"
+                strokeWidth={0.4}
+                style={{
+                  default: { outline: 'none' },
+                  hover: { outline: 'none', opacity: 0.85 },
+                  pressed: { outline: 'none' },
+                }}
+              />
+            );
+          })
+        }
+      </Geographies>
+    </ComposableMap>
+  );
+}
+
+const MemoMap = memo(SalesMap);
+
 export default function SalesMapping() {
   return (
-    <div className="bg-white rounded-xl p-4 border border-gray-100">
-      <h3 className="text-sm font-semibold text-gray-800 mb-3">Sales Mapping by Country</h3>
-      <div className="flex items-center justify-center h-40">
-        <svg viewBox="0 0 1000 500" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          {/* Simplified world map blobs */}
-          {/* North America */}
-          <ellipse cx="200" cy="180" rx="120" ry="90" fill="#e0e7ff" opacity="0.8" />
-          <ellipse cx="180" cy="260" rx="60" ry="50" fill="#c7d2fe" opacity="0.8" />
-          {/* South America */}
-          <ellipse cx="270" cy="350" rx="60" ry="80" fill="#ef4444" opacity="0.7" />
-          {/* Europe */}
-          <ellipse cx="480" cy="160" rx="60" ry="55" fill="#e0e7ff" opacity="0.8" />
-          {/* Africa */}
-          <ellipse cx="490" cy="300" rx="65" ry="90" fill="#fde68a" opacity="0.8" />
-          {/* Asia */}
-          <ellipse cx="700" cy="190" rx="160" ry="100" fill="#6366f1" opacity="0.7" />
-          {/* Southeast Asia */}
-          <ellipse cx="780" cy="310" rx="60" ry="50" fill="#a5b4fc" opacity="0.7" />
-          {/* Australia */}
-          <ellipse cx="820" cy="390" rx="70" ry="50" fill="#e0e7ff" opacity="0.7" />
-          {/* Japan / East Asia highlight */}
-          <circle cx="840" cy="200" r="18" fill="#4f46e5" opacity="0.9" />
-        </svg>
+    <DashboardCard title="Sales Mapping by Country">
+      <div className="flex-1 min-h-[200px] w-full flex items-center justify-center">
+        <div className="w-full h-full max-h-[220px]">
+          <MemoMap />
+        </div>
       </div>
-    </div>
+    </DashboardCard>
   );
 }
