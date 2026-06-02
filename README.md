@@ -1,4 +1,4 @@
-# Dabang Sales Dashboard (Aforro)
+# Aforro Sales Dashboard (Aforro)
 
 React sales dashboard with live user data from JSONPlaceholder.
 
